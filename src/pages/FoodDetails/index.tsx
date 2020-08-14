@@ -83,7 +83,14 @@ const FoodDetails: React.FC = () => {
       };
 
       setFood(foodsWithFormattedPrice);
-      setExtras(foodsWithFormattedPrice.extras);
+
+      const parsedExtras = data.extras.map(
+        (extra: Omit<Extra, 'quantity'>) => ({
+          ...extra,
+          quantity: 0,
+        }),
+      );
+      setExtras(parsedExtras);
     }
 
     loadFood();
